@@ -9,7 +9,9 @@ def index():
 
 @app.route('/contato')
 def contato():
-  return render_template('contato.html')
+  x = 'maria'
+  y = 'maria@gmail.com'
+  return render_template('contato.html', nome=x, email=y)
 
 @app.route('/exemplo')
 def exemplo():
@@ -18,6 +20,15 @@ def exemplo():
 @app.route('/exemplo2')
 def exemplo2():
   return render_template('exemplo2.html')
+
+@app.route('/perfil', defaults={'nome': 'fulano'})
+@app.route ('/perfil/<nome>')
+def perfil(nome):
+  return render_template ('perfil.html', nome = nome)
+
+@app.route('/semestre/<x>')
+def semestre (x):
+  return render_template('semestre.html', x=x)
 
 if __name__ == '__main__':
     app.run()
